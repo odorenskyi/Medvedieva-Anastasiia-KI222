@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1682839454 source:d:\uni\code blocks\lab 10\task 2\task 2\main.cpp
+	<iostream>
+	<fstream>
+	<ctime>
+	<conio.h>
+	<Windows.h>
+	<iomanip>
+

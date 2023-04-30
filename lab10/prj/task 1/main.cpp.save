@@ -1,0 +1,53 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+#include <conio.h>
+#include <Windows.h>
+#include <iomanip>
+
+
+
+using namespace std;
+
+int main() {
+     string sentence;
+     SetConsoleCP (1251);
+     SetConsoleOutputCP (1251);
+
+    ifstream input_file("D:/UNI/Code Blocks/Lab 10/task 1/text.txt");
+
+    if (!input_file.is_open()) {
+        cout << "Помилка відкриття вхідного файлу" << endl;
+        return 1;
+    }
+
+    string input_str;
+    getline(input_file, input_str);
+
+
+    int upper_case_count = count_if(input_str.begin(), input_str.end(), [](unsigned char c) {
+        return isupper(c);
+    });
+    bool is_simonenko = input_str == "Коли малим ти вперше став на ноги -\nЯка ж то радість матері була!\nВід тихої колиски до порога\nВона тебе за руку провела.\n" ||
+                        input_str == "Вона прибігла стомлена з роботи,\nІ, може, сон їй очі замикав,\nА дома — новий клопіт і турботи,\nІ довга низка непочатих справ.";
+
+    input_file.close();
+
+    ofstream output_file("inform.txt");
+
+    if (!output_file.is_open()) {
+        cout << "Помилка відкриття вихідного файлу" << endl;
+        return 1;
+    }
+
+    output_file << "Розробник: Медведєва Анастасія\nУстанова: Центральноукраїнський національний технічний університет\nМісто: Кропивницький\nКраїна: Україна\nРік: 2023\n\n";
+
+    output_file << "Кількість символів верхнього регістра: " << upper_case_count << "\n\n";
+
+    if (is_simonenko) {
+        output_file << "Рядок є одним з рядків вірша Василя Симоненка \"Вклонився їй\"\n";
+    } else {
+        output_file << "Рядок не є одним з рядків вірша Василя Симоненка \"Вклонився їй\"\n";
+    }
+}
