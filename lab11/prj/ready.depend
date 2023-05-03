@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1683132997 source:d:\uni\code blocks\lab 11\prj\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<conio.h>
+	<Windows.h>
+	<iomanip>
+
