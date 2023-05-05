@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <Windows.h>
 #include <iomanip>
+#include "ModulesMedvedieva.h"
 
 using namespace std;
 
@@ -23,17 +24,17 @@ void searchRecord(const vector<Publication>& registry) {
  SetConsoleOutputCP (1251);
 
     string searchQuery;
-    cout << "Введіть назву публікації або серію та номер свідоцтва для пошуку: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г­Г Г§ГўГі ГЇГіГЎГ«ВіГЄГ Г¶ВіВї Г ГЎГ® Г±ГҐГ°ВіГѕ ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ  Г¤Г«Гї ГЇГ®ГёГіГЄГі: ";
     getline(cin, searchQuery);
     bool found = false;
     for (const Publication& pub : registry) {
         if (pub.name == searchQuery || (pub.series == stoi(searchQuery.substr(0, searchQuery.find('-'))) && pub.number == stoi(searchQuery.substr(searchQuery.find('-') + 1)))) {
-            cout << "Знайдено публікацію: " << pub.name << ", серію та номер свідоцтва: " << pub.series << "-" << pub.number << endl;
+            cout << "Г‡Г­Г Г©Г¤ГҐГ­Г® ГЇГіГЎГ«ВіГЄГ Г¶ВіГѕ: " << pub.name << ", Г±ГҐГ°ВіГѕ ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ : " << pub.series << "-" << pub.number << endl;
             found = true;
         }
     }
     if (!found) {
-        cout << "Видання не знайдено." << endl;
+        cout << "Г‚ГЁГ¤Г Г­Г­Гї Г­ГҐ Г§Г­Г Г©Г¤ГҐГ­Г®." << endl;
     }
 }
 
@@ -43,39 +44,39 @@ void printRegistry(const vector<Publication>& registry) {
     SetConsoleOutputCP (1251);
 
     char choice;
-    cout << "Ви хочете вивести реєстр на консолі (c) чи у файл (f)? ";
+    cout << "Г‚ГЁ ГµГ®Г·ГҐГІГҐ ГўГЁГўГҐГ±ГІГЁ Г°ГҐВєГ±ГІГ° Г­Г  ГЄГ®Г­Г±Г®Г«Ві (c) Г·ГЁ Гі ГґГ Г©Г« (f)? ";
     cin >> choice;
     if (choice == 'c') {
         for (const Publication& pub : registry) {
-            cout << "Назва видання: " << pub.name << endl;
-            cout << "Вид видання: " << pub.publisher << endl;
-            cout << "Розробники: " << pub.developers << endl;
-            cout << "Дата реєстрації: " << pub.date << endl;
-            cout << "Серія та номер свідоцтва: " << pub.series << "-" << pub.number << endl;
+            cout << "ГЌГ Г§ГўГ  ГўГЁГ¤Г Г­Г­Гї: " << pub.name << endl;
+            cout << "Г‚ГЁГ¤ ГўГЁГ¤Г Г­Г­Гї: " << pub.publisher << endl;
+            cout << "ГђГ®Г§Г°Г®ГЎГ­ГЁГЄГЁ: " << pub.developers << endl;
+            cout << "Г„Г ГІГ  Г°ГҐВєГ±ГІГ°Г Г¶ВіВї: " << pub.date << endl;
+            cout << "Г‘ГҐГ°ВіГї ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ : " << pub.series << "-" << pub.number << endl;
         }
     }
     else if (choice == 'f') {
         string fileName;
-        cout << "Введіть назву файлу: ";
+        cout << "Г‚ГўГҐГ¤ВіГІГј Г­Г Г§ГўГі ГґГ Г©Г«Гі: ";
         cin >> fileName;
         ofstream outFile(fileName);
         if (outFile.is_open()) {
             for (const Publication& pub : registry) {
-                outFile << "Назва видання: " << pub.name << endl;
-                outFile << "Вид видання: " << pub.publisher << endl;
-                outFile << "Розробники: " << pub.developers << endl;
-                outFile << "Дата реєстрації: " << pub.date << endl;
-                outFile << "Серія та номер свідоцтва: " << pub.series << "-" << pub.number << endl;
+                outFile << "ГЌГ Г§ГўГ  ГўГЁГ¤Г Г­Г­Гї: " << pub.name << endl;
+                outFile << "Г‚ГЁГ¤ ГўГЁГ¤Г Г­Г­Гї: " << pub.publisher << endl;
+                outFile << "ГђГ®Г§Г°Г®ГЎГ­ГЁГЄГЁ: " << pub.developers << endl;
+                outFile << "Г„Г ГІГ  Г°ГҐВєГ±ГІГ°Г Г¶ВіВї: " << pub.date << endl;
+                outFile << "Г‘ГҐГ°ВіГї ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ : " << pub.series << "-" << pub.number << endl;
             }
             outFile.close();
-            cout << "Реєстр доданий до файлу." << endl;
+            cout << "ГђГҐВєГ±ГІГ° Г¤Г®Г¤Г Г­ГЁГ© Г¤Г® ГґГ Г©Г«Гі." << endl;
         }
         else {
-            cout << "Неможливо відкрити файл." << endl;
+            cout << "ГЌГҐГ¬Г®Г¦Г«ГЁГўГ® ГўВіГ¤ГЄГ°ГЁГІГЁ ГґГ Г©Г«." << endl;
         }
     }
     else {
-        cout << "Невірний вибір" << endl;
+        cout << "ГЌГҐГўВіГ°Г­ГЁГ© ГўГЁГЎВіГ°" << endl;
     }
 }
 
@@ -90,27 +91,27 @@ void addRecord(vector<Publication>& registry) {
     string publisher;
     string developers;
     string date;
-    cout << "Введіть назву видання: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г­Г Г§ГўГі ГўГЁГ¤Г Г­Г­Гї: ";
     getline(cin, name);
 
-    cout << "Введіть серію та номер свідоцтва: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г±ГҐГ°ВіГѕ ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ : ";
     cin >> series;
     cin.ignore();
 
-    cout << "Введіть вид видання: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј ГўГЁГ¤ ГўГЁГ¤Г Г­Г­Гї: ";
     getline(cin, publisher);
     cin.ignore();
 
-    cout << "Введіть засновника: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г§Г Г±Г­Г®ГўГ­ГЁГЄГ : ";
     getline(cin, developers);
     cin.ignore();
 
-    cout << "Введіть дату видання: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г¤Г ГІГі ГўГЁГ¤Г Г­Г­Гї: ";
     getline(cin, date);
     cin.ignore();
 
     registry.push_back({ name, series, number, publisher, developers, date });
-    cout << "Запис додано." << endl;
+    cout << "Г‡Г ГЇГЁГ± Г¤Г®Г¤Г Г­Г®." << endl;
 }
 
 void deleteRecord(vector<Publication>& registry) {
@@ -119,18 +120,18 @@ void deleteRecord(vector<Publication>& registry) {
  SetConsoleOutputCP (1251);
 
     string searchQuery;
-    cout << "Введіть назву публікації або серію та номер свідоцтва для видалення: ";
+    cout << "Г‚ГўГҐГ¤ВіГІГј Г­Г Г§ГўГі ГЇГіГЎГ«ВіГЄГ Г¶ВіВї Г ГЎГ® Г±ГҐГ°ВіГѕ ГІГ  Г­Г®Г¬ГҐГ° Г±ГўВіГ¤Г®Г¶ГІГўГ  Г¤Г«Гї ГўГЁГ¤Г Г«ГҐГ­Г­Гї: ";
     getline(cin, searchQuery);
     bool found = false;
     for (auto it = registry.begin(); it != registry.end(); it++) {
     if (it->name == searchQuery || (it->series == stoi(searchQuery.substr(0, searchQuery.find('-'))) && it->number == stoi(searchQuery.substr(searchQuery.find('-') + 1)))) {
     it = registry.erase(it);
-    cout << "Запис видалено." << endl;
+    cout << "Г‡Г ГЇГЁГ± ГўГЁГ¤Г Г«ГҐГ­Г®." << endl;
     found = true;
   }
 }
   if (!found) {
-    cout << "Видання не знайдено." << endl;
+    cout << "Г‚ГЁГ¤Г Г­Г­Гї Г­ГҐ Г§Г­Г Г©Г¤ГҐГ­Г®." << endl;
   }
 }
 
@@ -140,19 +141,19 @@ int main() {
  SetConsoleOutputCP (1251);
 
 vector<Publication> registry = {
-    { "Студентський вісник", 104, 1, "газета", "Кіровоградський інститут сільськогосподарського машинобудування", "23.02.95" },
-    { "Апостроф", 10841, 1, "інтернет-видання", "Міжнародний центр перспективних досліджень", "11.08.14" },
-    { "РБК-Україна", 36612, 1, "інформаційна агенція", "Йосип Геннадійович Пінтус", "2006" }
+    { "Г‘ГІГіГ¤ГҐГ­ГІГ±ГјГЄГЁГ© ГўВіГ±Г­ГЁГЄ", 104, 1, "ГЈГ Г§ГҐГІГ ", "ГЉВіГ°Г®ГўГ®ГЈГ°Г Г¤Г±ГјГЄГЁГ© ВіГ­Г±ГІГЁГІГіГІ Г±ВіГ«ГјГ±ГјГЄГ®ГЈГ®Г±ГЇГ®Г¤Г Г°Г±ГјГЄГ®ГЈГ® Г¬Г ГёГЁГ­Г®ГЎГіГ¤ГіГўГ Г­Г­Гї", "23.02.95" },
+    { "ГЂГЇГ®Г±ГІГ°Г®Гґ", 10841, 1, "ВіГ­ГІГҐГ°Г­ГҐГІ-ГўГЁГ¤Г Г­Г­Гї", "ГЊВіГ¦Г­Г Г°Г®Г¤Г­ГЁГ© Г¶ГҐГ­ГІГ° ГЇГҐГ°Г±ГЇГҐГЄГІГЁГўГ­ГЁГµ Г¤Г®Г±Г«ВіГ¤Г¦ГҐГ­Гј", "11.08.14" },
+    { "ГђГЃГЉ-Г“ГЄГ°Г ВїГ­Г ", 36612, 1, "ВіГ­ГґГ®Г°Г¬Г Г¶ВіГ©Г­Г  Г ГЈГҐГ­Г¶ВіГї", "Г‰Г®Г±ГЁГЇ ГѓГҐГ­Г­Г Г¤ВіГ©Г®ГўГЁГ· ГЏВіГ­ГІГіГ±", "2006" }
 };
 
 char choice;
 do {
-    cout << "Виберіть варіант:" << endl;
-    cout << "1. Пошук запису" << endl;
-    cout << "2. Виведення реєстру" << endl;
-    cout << "3. Додати запис" << endl;
-    cout << "4. Видалити запис" << endl;
-    cout << "5. Вихід" << endl;
+    cout << "Г‚ГЁГЎГҐГ°ВіГІГј ГўГ Г°ВіГ Г­ГІ:" << endl;
+    cout << "1. ГЏГ®ГёГіГЄ Г§Г ГЇГЁГ±Гі" << endl;
+    cout << "2. Г‚ГЁГўГҐГ¤ГҐГ­Г­Гї Г°ГҐВєГ±ГІГ°Гі" << endl;
+    cout << "3. Г„Г®Г¤Г ГІГЁ Г§Г ГЇГЁГ±" << endl;
+    cout << "4. Г‚ГЁГ¤Г Г«ГЁГІГЁ Г§Г ГЇГЁГ±" << endl;
+    cout << "5. Г‚ГЁГµВіГ¤" << endl;
     cin >> choice;
     cin.ignore();
     switch (choice) {
@@ -171,7 +172,7 @@ do {
     case '5':
         break;
     default:
-        cout << "Невірний вибір." << endl;
+        cout << "ГЌГҐГўВіГ°Г­ГЁГ© ГўГЁГЎВіГ°." << endl;
         break;
     }
 } while (choice != '5');
@@ -182,10 +183,10 @@ ofstream outFile("reg2.txt");
         outFile << pub.name << "," << pub.series << "," << pub.number << endl;
 }
     outFile.close();
-    cout << "Реєстр збережено у файл." << endl;
+    cout << "ГђГҐВєГ±ГІГ° Г§ГЎГҐГ°ГҐГ¦ГҐГ­Г® Гі ГґГ Г©Г«." << endl;
 }
   else {
-    cout << "Не вдалося зберегти файл." << endl;
+    cout << "ГЌГҐ ГўГ¤Г Г«Г®Г±Гї Г§ГЎГҐГ°ГҐГЈГІГЁ ГґГ Г©Г«." << endl;
 }
 
   return 0;
