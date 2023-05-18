@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1684319225 source:d:\uni\code blocks\lab 12\lab 12\main.cpp
+	<iostream>
+	<string>
+	<algorithm>
+	<conio.h>
+	<Windows.h>
+	<iomanip>
+
